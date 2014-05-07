@@ -137,4 +137,6 @@ micro: all
 cub: OPT_DEFS += -DKEYMAP_CUB
 cub: all
 
+chad: OPT_DEFS += -DKEYMAP_CHAD
+chad: all
 
