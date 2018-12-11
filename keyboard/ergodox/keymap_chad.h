@@ -113,14 +113,14 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     KEYMAP(  // Layer5: Gaming?
         // left hand
-        F1,  F2,  F3,  F4,  F5,  F6,  F7,
-        TAB, TRNS,TRNS,TRNS,TRNS,TRNS,F8,
-        ESC, TRNS,TRNS,TRNS,TRNS,TRNS,
-        LSFT,TRNS,TRNS,TRNS,TRNS,TRNS,F9,
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
+        TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
         TRNS,TRNS,TRNS,TRNS,TRNS,
                                       TRNS,TRNS,
-                                           F10,
-                                 FN1, LCTL,LALT,
+                                           TRNS,
+                                 SPC, TRNS,LALT,
         // right hand
              TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
              TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,TRNS,
@@ -148,8 +148,8 @@ static const uint16_t PROGMEM fn_actions[] = {
     [4] =   ACTION_MODS_TAP_KEY(MOD_RSFT, KC_SPC),          // FN4 = UNUSED
 
 
-    [8] =   ACTION_MODS_KEY(MOD_LCTL | MOD_LSFT, KC_SPC),   // FN8 = Alfred
-    [9] =   ACTION_MODS_KEY(MOD_LCTL | MOD_LGUI, KC_SPC),   // FN9 = Moom
+    [8] =   ACTION_MODS_KEY(MOD_LCTL | MOD_LALT | MOD_LSFT, KC_SPC),   // FN8 = Alfred
+    [9] =   ACTION_MODS_KEY(MOD_LCTL | MOD_LALT | MOD_LGUI, KC_SPC),   // FN9 = Moom
 
     [25] =  ACTION_LAYER_SET(0, ON_BOTH),                   // FN25 - set Layer0
     [26] =  ACTION_LAYER_TOGGLE(5),                         // FN26 - set Layer5
@@ -178,9 +178,6 @@ static const uint16_t PROGMEM fn_actions_3[] = {
 };
 static const uint16_t PROGMEM fn_actions_4[] = {
 };
-static const uint16_t PROGMEM fn_actions_5[] = {
-    [1] =   ACTION_MODS_TAP_KEY(SPC, KC_BSPC),         // FN1 = LShift with tap BackSpace
-};
 
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
@@ -198,7 +195,6 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 #define FN_ACTIONS_2_SIZE   (sizeof(fn_actions_2) / sizeof(fn_actions_2[0]))
 #define FN_ACTIONS_3_SIZE   (sizeof(fn_actions_3) / sizeof(fn_actions_3[0]))
 #define FN_ACTIONS_4_SIZE   (sizeof(fn_actions_4) / sizeof(fn_actions_4[0]))
-#define FN_ACTIONS_5_SIZE   (sizeof(fn_actions_5) / sizeof(fn_actions_5[0]))
 
 /*
  * translates Fn keycode to action
@@ -225,10 +221,6 @@ action_t keymap_fn_to_action(uint8_t keycode)
 
     if (layer == 4 && FN_INDEX(keycode) < FN_ACTIONS_4_SIZE) {
         action.code = pgm_read_word(&fn_actions_4[FN_INDEX(keycode)]);
-    }
-
-    if (layer == 5 && FN_INDEX(keycode) < FN_ACTIONS_5_SIZE) {
-        action.code = pgm_read_word(&fn_actions_5[FN_INDEX(keycode)]);
     }
 
     if (action.code == ACTION_NO && FN_INDEX(keycode) < FN_ACTIONS_SIZE) {
