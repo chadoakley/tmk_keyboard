@@ -38,6 +38,7 @@ Most used files are located at
 #include "i2cmaster.h"
 
 bool i2c_initialized = 0;
+uint8_t mcp23019_status = 0x20;
 uint8_t mcp23018_status = 0x20;
 
 bool ergodox_left_led_1 = 0;  // left top
@@ -67,15 +68,15 @@ void init_ergodox(void)
 
 void ergodox_blink_all_leds(void)
 {
-    ergodox_led_all_off();
-    ergodox_led_all_set(LED_BRIGHTNESS_HI);
-    ergodox_led_all_on();
-    _delay_ms(333);
-    ergodox_led_all_off();
+    // ergodox_led_all_off();
+    // ergodox_led_all_set(LED_BRIGHTNESS_HI);
+    // ergodox_led_all_on();
+    // _delay_ms(333);
+    // ergodox_led_all_off();
 }
 
 uint8_t init_mcp23018(void) {
-    mcp23018_status = 0x20;
+    mcp23019_status = 0x20;
 
     // I2C subsystem
     if (i2c_initialized == 0) {
