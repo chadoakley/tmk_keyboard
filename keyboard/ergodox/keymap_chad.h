@@ -11,7 +11,7 @@ static const uint8_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                            NO,
                                  FN1, LCTL,FN30,
         // right hand
-             NO,  6,   7,   8,   9,   0,   MINS,
+             FN7, 6,   7,   8,   9,   0,   MINS,
              FN8, Y,   U,   I,   O,   P,   EQL,
                   H,   J,   K,   L,   SCLN,QUOT,
              FN9 ,N,   M,   COMM,DOT, SLSH,RSFT,
@@ -148,6 +148,7 @@ static const uint16_t PROGMEM fn_actions[] = {
     [4] =   ACTION_MODS_TAP_KEY(MOD_RSFT, KC_SPC),          // FN4 = UNUSED
 
 
+    [7] =   ACTION_MODS_KEY(MOD_LCTL | MOD_LSFT, KC_BSPC),             // FN7 = Omnifocus
     [8] =   ACTION_MODS_KEY(MOD_LCTL | MOD_LALT | MOD_LSFT, KC_SPC),   // FN8 = Alfred
     [9] =   ACTION_MODS_KEY(MOD_LCTL | MOD_LALT | MOD_LGUI, KC_SPC),   // FN9 = Moom
 
